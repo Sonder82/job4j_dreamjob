@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.job4j.dreamjob.repository.MemoryVacancyRepository;
 import ru.job4j.dreamjob.repository.VacancyRepository;
 
+/**
+ * Класс-контроллер для работы с вакансиями
+ */
 @Controller
 @RequestMapping("/vacancies") /* Работать с кандидатами будем по URI /vacancies/** */
 public class VacancyController {

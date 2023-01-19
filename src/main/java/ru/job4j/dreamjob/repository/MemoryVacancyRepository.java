@@ -6,6 +6,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+/**
+ * Класс описывает хранилище вакансий в оперативной памяти сервера.
+ */
 public class MemoryVacancyRepository implements VacancyRepository {
 
     private static final MemoryVacancyRepository INSTANCE = new MemoryVacancyRepository();
