@@ -3,7 +3,6 @@ package ru.job4j.dreamjob.repository;
 import ru.job4j.dreamjob.model.Vacancy;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -18,19 +17,19 @@ public class MemoryVacancyRepository implements VacancyRepository {
     private final Map<Integer, Vacancy> vacancies = new HashMap<>();
 
     public MemoryVacancyRepository() {
-        String localDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"));
+
         save(new Vacancy(0, "Intern Java Developer",
-                "We are looking for a Intern Java Developer", localDateTime));
+                "We are looking for a Intern Java Developer", LocalDateTime.now()));
         save(new Vacancy(0, "Junior Java Developer",
-                "We are looking for a Junior Java Developer", localDateTime));
+                "We are looking for a Junior Java Developer", LocalDateTime.now()));
         save(new Vacancy(0, "Junior+ Java Developer",
-                "We are looking for a Junior+ Java Developer", localDateTime));
+                "We are looking for a Junior+ Java Developer", LocalDateTime.now()));
         save(new Vacancy(0, "Middle Java Developer",
-                "We are looking for Middle Java Developer", localDateTime));
+                "We are looking for Middle Java Developer", LocalDateTime.now()));
         save(new Vacancy(0, "Middle+ Java Developer",
-                "We are looking for a Middle+ Java Developer", localDateTime));
+                "We are looking for a Middle+ Java Developer", LocalDateTime.now()));
         save(new Vacancy(0, "Senior Java Developer",
-                "We are looking for a Senior Java Developer", localDateTime));
+                "We are looking for a Senior Java Developer", LocalDateTime.now()));
     }
 
     public static MemoryVacancyRepository getInstance() {

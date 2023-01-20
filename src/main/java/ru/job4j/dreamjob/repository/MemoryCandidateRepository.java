@@ -4,7 +4,6 @@ import org.springframework.stereotype.Repository;
 import ru.job4j.dreamjob.model.Candidate;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,19 +23,19 @@ public class MemoryCandidateRepository implements CandidateRepository {
     private final Map<Integer, Candidate> candidates = new HashMap<>();
 
     public MemoryCandidateRepository() {
-        String localDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"));
+
         save(new Candidate(0, "Ivan Ivanov",
-                "Intern Java Developer", localDateTime));
+                "Intern Java Developer", LocalDateTime.now()));
         save(new Candidate(0, "Sergey Petrov",
-                "Junior Java Developer", localDateTime));
+                "Junior Java Developer", LocalDateTime.now()));
         save(new Candidate(0, "Aleksey Polenov",
-                "Junior+ Java Developer", localDateTime));
+                "Junior+ Java Developer", LocalDateTime.now()));
         save(new Candidate(0, "Aleksandr Ustinov",
-                "Middle Java Developer", localDateTime));
+                "Middle Java Developer", LocalDateTime.now()));
         save(new Candidate(0, "Dmitriy Svetlov",
-                "Middle+ Java Developer", localDateTime));
+                "Middle+ Java Developer", LocalDateTime.now()));
         save(new Candidate(0, "Andrey Sidorov",
-                "Senior Java Developer", localDateTime));
+                "Senior Java Developer", LocalDateTime.now()));
     }
 
     public static MemoryCandidateRepository getInstance() {

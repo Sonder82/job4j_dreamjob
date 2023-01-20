@@ -1,10 +1,15 @@
 package ru.job4j.dreamjob.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 /**
  * Класс содержит модель, описывающую кандидата.
  */
 public class Candidate {
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
+
     /**
      * поле id
      */
@@ -20,9 +25,9 @@ public class Candidate {
     /**
      * поле дата создания
      */
-    private String creationDate;
+    private LocalDateTime creationDate;
 
-    public Candidate(int id, String name, String description, String creationDate) {
+    public Candidate(int id, String name, String description, LocalDateTime creationDate) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -53,11 +58,11 @@ public class Candidate {
         this.description = description;
     }
 
-    public String getCreationDate() {
+    public LocalDateTime getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(String creationDate) {
+    public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
 
