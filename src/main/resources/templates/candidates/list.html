@@ -22,7 +22,7 @@
                     <a class="nav-item nav-link" th:href="@{/vacancies}">Вакансии</a>
                     <a class="nav-item nav-link active" th:href="@{/candidates}">Кандидаты</a>
                     <a class="nav-item nav-link" th:href="@{/vacancies/create}">Создать вакансию</a>
-                    <a class="nav-item nav-link" th:href="@{/candidates/create}">Создать резюме кандидата</a>
+                    <a class="nav-item nav-link" th:href="@{/candidates/create}">Создать резюме</a>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
                 <tbody>
                 <tr th:each="candidate: ${candidates}">
                     <td th:text="${candidate.id}" />
-                    <td th:text="${candidate.name}" />
+                    <td><a th:text="${candidate.name}" th:href="@{/candidates/{candidateId}(candidateId=${candidate.id})}"></a></td>
                     <td th:text="${#temporals.format(candidate.creationDate, 'dd-MM-yyyy HH:mm')}"/>
                 </tr>
                 </tbody>
