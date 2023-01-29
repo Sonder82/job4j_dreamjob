@@ -5,7 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.dreamjob.model.Candidate;
 import ru.job4j.dreamjob.service.CandidateService;
-import ru.job4j.dreamjob.service.SimpleCandidateService;
 
 import java.util.Optional;
 
@@ -19,7 +18,11 @@ public class CandidateController {
     /**
      * Поле {@link CandidateService} - хранилище с кандидатами
      */
-    private final CandidateService candidateService = SimpleCandidateService.getInstance();
+    private final CandidateService candidateService;
+
+    public CandidateController(CandidateService candidateService) {
+        this.candidateService = candidateService;
+    }
 
     /**
      * Метод выполняет работу по представлению всех кандидатов в браузере
