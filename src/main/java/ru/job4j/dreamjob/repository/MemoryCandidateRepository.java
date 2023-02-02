@@ -25,17 +25,17 @@ public class MemoryCandidateRepository implements CandidateRepository {
     public MemoryCandidateRepository() {
 
         save(new Candidate(0, "Ivan Ivanov",
-                "Intern Java Developer", LocalDateTime.now()));
+                "Intern Java Developer", LocalDateTime.now(), 1, 0));
         save(new Candidate(0, "Sergey Petrov",
-                "Junior Java Developer", LocalDateTime.now()));
+                "Junior Java Developer", LocalDateTime.now(), 1, 0));
         save(new Candidate(0, "Aleksey Polenov",
-                "Junior+ Java Developer", LocalDateTime.now()));
+                "Junior+ Java Developer", LocalDateTime.now(), 2, 0));
         save(new Candidate(0, "Aleksandr Ustinov",
-                "Middle Java Developer", LocalDateTime.now()));
+                "Middle Java Developer", LocalDateTime.now(), 2, 0));
         save(new Candidate(0, "Dmitriy Svetlov",
-                "Middle+ Java Developer", LocalDateTime.now()));
+                "Middle+ Java Developer", LocalDateTime.now(), 3, 0));
         save(new Candidate(0, "Andrey Sidorov",
-                "Senior Java Developer", LocalDateTime.now()));
+                "Senior Java Developer", LocalDateTime.now(), 3, 0));
     }
 
     @Override
@@ -55,7 +55,7 @@ public class MemoryCandidateRepository implements CandidateRepository {
         return candidates.computeIfPresent(
                 candidate.getId(), (id, oldCandidate) -> new Candidate(
                         id, candidate.getName(), candidate.getDescription(),
-                        candidate.getCreationDate())) != null;
+                        candidate.getCreationDate(), candidate.getCityId(), candidate.getFileId())) != null;
     }
 
     @Override
