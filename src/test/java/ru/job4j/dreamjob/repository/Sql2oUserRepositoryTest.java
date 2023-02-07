@@ -52,14 +52,14 @@ class Sql2oUserRepositoryTest {
     void whenSaveThenGetSame() {
         Optional<User> user = sql2oUserRepository.save(new User(
                 0, "abc@gmail.com", "Aleksey", "12345"));
-        Optional<User> savedUser = sql2oUserRepository.findByEmailAndPassword
-                (user.get().getEmail(), user.get().getPassword());
+        Optional<User> savedUser = sql2oUserRepository.findByEmailAndPassword(
+                user.get().getEmail(), user.get().getPassword());
         assertThat(savedUser).usingRecursiveComparison().isEqualTo(user);
     }
 
     @Test
     public void whenEmailAndPasswordWrong() {
-        assertThat(sql2oUserRepository.findByEmailAndPassword("abc","qwerty")).isEqualTo(empty());
+        assertThat(sql2oUserRepository.findByEmailAndPassword("abc", "qwerty")).isEqualTo(empty());
     }
 
     @Test
