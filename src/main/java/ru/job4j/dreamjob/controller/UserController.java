@@ -33,14 +33,11 @@ public class UserController {
 
     /**
      * Метод служит для отображения страницы с регистрацией пользователя
-     * @param model {@link Model}
-     * @param session {@link HttpSession}
+     *
      * @return возвращает страницу с регистрацией
      */
     @GetMapping("/register")
-    public String getRegistrationPage(Model model, HttpSession session) {
-        User user = checkSession(session);
-        model.addAttribute("user", user);
+    public String getRegistrationPage() {
         return "users/register";
     }
 
@@ -63,14 +60,11 @@ public class UserController {
 
     /**
      * Метод служит для отображения страницы ввода данных для входа в аккаунт.
-     * @param model {@link Model}
-     * @param session {@link HttpSession}
+
      * @return возвращает страницу с вводом данных
      */
     @GetMapping("/login")
-    public String getLoginPage(Model model, HttpSession session) {
-        User user = checkSession(session);
-        model.addAttribute("user", user);
+    public String getLoginPage() {
         return "users/login";
     }
 
@@ -102,20 +96,6 @@ public class UserController {
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/users/login";
-    }
-
-    /**
-     * Метод позволяет привязать данные сессии {@link HttpSession} к клиенту {@link User}
-     * @param session {@link HttpSession}
-     * @return {@link User}
-     */
-    private static User checkSession(HttpSession session) {
-        var user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setName("Гость");
-        }
-        return user;
     }
 }
 

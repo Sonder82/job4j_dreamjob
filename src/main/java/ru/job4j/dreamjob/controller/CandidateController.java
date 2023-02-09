@@ -7,13 +7,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.job4j.dreamjob.dto.FileDto;
 import ru.job4j.dreamjob.model.Candidate;
-import ru.job4j.dreamjob.model.User;
-import ru.job4j.dreamjob.model.Vacancy;
 import ru.job4j.dreamjob.service.CandidateService;
 import ru.job4j.dreamjob.service.CityService;
 import ru.job4j.dreamjob.service.FileService;
 
-import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 /**
@@ -45,9 +42,7 @@ public class CandidateController {
      * @return возвращает отображение всех кандидатов
      */
     @GetMapping
-    public String getAll(Model model, HttpSession session) {
-        User user = checkSession(session);
-        model.addAttribute("user", user);
+    public String getAll(Model model) {
         model.addAttribute("candidates", candidateService.findAll());
         return "candidates/list";
     }
@@ -58,9 +53,7 @@ public class CandidateController {
      * @return возвращает отображение страницы с формой по созданию кандидата
      */
     @GetMapping("/create")
-    public String getCreationPage(Model model, HttpSession session) {
-        User user = checkSession(session);
-        model.addAttribute("user", user);
+    public String getCreationPage(Model model) {
         model.addAttribute("cities", cityService.findAll());
         return "candidates/create";
     }
@@ -94,14 +87,12 @@ public class CandidateController {
      * @return строку с ошибкой или представление для редактирования вакансии
      */
     @GetMapping("/{id}")
-    public String getById(Model model, @PathVariable int id, HttpSession session) {
+    public String getById(Model model, @PathVariable int id) {
         Optional<Candidate> candidateOptional = candidateService.findById(id);
         if (candidateOptional.isEmpty()) {
             model.addAttribute("message", "Кандидат с указанным идентификатором не найден");
             return "errors/404";
         }
-        User user = checkSession(session);
-        model.addAttribute("user", user);
         model.addAttribute("cities", cityService.findAll());
         model.addAttribute("candidate", candidateOptional.get());
         return "candidates/one";
@@ -146,19 +137,5 @@ public class CandidateController {
             return "errors/404";
         }
         return "redirect:/candidates";
-    }
-
-    /**
-     * Метод позволяет привязать данные сессии {@link HttpSession} к клиенту {@link User}
-     * @param session {@link HttpSession}
-     * @return {@link User}
-     */
-    private static User checkSession(HttpSession session) {
-        var user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setName("Гость");
-        }
-        return user;
     }
 }

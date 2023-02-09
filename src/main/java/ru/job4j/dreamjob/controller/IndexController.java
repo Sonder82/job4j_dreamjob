@@ -17,18 +17,11 @@ public class IndexController {
 
     /**
      * Метод используется для отображения начальной страницы
-     * @param model {@link Model}
-     * @param session {@link HttpSession}
+     *
      * @return возвращает начальную страницу
      */
     @GetMapping({"/", "/index"})
-    public String getIndex(Model model, HttpSession session) {
-        var user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setName("Гость");
-        }
-        model.addAttribute("user", user);
+    public String getIndex() {
         return "index";
     }
 }
